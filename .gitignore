@@ -41,7 +41,8 @@ Thumbs.db
 
 widget.js
 widget.html
-widget-min.js
+widget.min.js
+widget.min.js.map
 loader.svg
 icons
 config.codekit
