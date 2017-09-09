@@ -484,13 +484,21 @@ SOFTWARE.
 			var button = document.createElement("button");
 			button.style.webkitAppearance = "none";
 			button.style.border = "none";
+			button.setAttribute("tabindex", "1");
+			document.addEventListener("keyup", function(e) {
+				if (e.keyCode === 9 || e.code === "Tab" || e.keyIdentifier === "U+0009" || e.which === 9) {
+					if (document.querySelectorAll("*:focus").length === 0) {
+						button.focus();
+					}
+				}
+			});
 			document.body.appendChild(button);
 			switch (a.button) {
 				case "circle":
 					button.style.padding = "7px";
 					button.style.backgroundColor = a.color ? a.color : "#444";
 					var image = document.createElement("img");
-					image.setAttribute("src", a.image ? a.image : "https://cdn.oswald.foundation/5cabb-noun_1872.svg");
+					image.setAttribute("src", a.image ? a.image : "icon-a11y.svg");
 					if (!a.image) {
 						if (a.theme) {
 							if (a.theme === "dark") {
@@ -512,7 +520,7 @@ SOFTWARE.
 			}
 			if (a.button && a.xPosition && a.yPosition) {
 				button.classList.add("a11y-floating-button");
-				loadStyles(".a11y-floating-button{transition:.3s;opacity:0;transform:scale(0.8);cursor:pointer;box-shadow:0 1px 6px rgba(0,0,0,.06),0 2px 32px rgba(0,0,0,.16)}.a11y-floating-button:hover{box-shadow:0 2px 8px rgba(0,0,0,.09),0 4px 40px rgba(0,0,0,.24)!important}.a11y-animate-rotate{animation:a11y-spin .6s infinite linear}@keyframes a11y-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}");
+				loadStyles(".a11y-floating-button{transition:.3s;opacity:0;transform:scale(0.8);cursor:pointer;box-shadow:0 1px 6px rgba(0,0,0,.06),0 2px 32px rgba(0,0,0,.16)}.a11y-floating-button:hover{box-shadow:0 2px 8px rgba(0,0,0,.09),0 4px 40px rgba(0,0,0,.24)!important}.a11y-floating-button:focus{border:2px solid}.a11y-animate-rotate{animation:a11y-spin .6s infinite linear}@keyframes a11y-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}");
 				button.style.position = "fixed";
 				button.style.zIndex = "8954303923";
 				setTimeout(function() {
@@ -549,17 +557,17 @@ SOFTWARE.
 			}
 			button.addEventListener("click", function() {
 				if (window.a11y.opened === 1) {
-					image.setAttribute("src", "https://cdn.anandchowdhary.com/a11yicon.svg");
+					image.setAttribute("src", "icon-a11y.svg");
 					closeWidget();
 				} else {
-					image.setAttribute("src", "https://cdn.anandchowdhary.com/loader.svg");
+					image.setAttribute("src", "icon-loading.svg");
 					image.classList.add("a11y-animate-rotate");
 					loadAgastya().then(function() {
-						image.setAttribute("src", "https://cdn.anandchowdhary.com/closeicon.svg");
+						image.setAttribute("src", "icon-close.svg");
 						image.classList.remove("a11y-animate-rotate");
 						window.a11y.opened = 1;
 					}, function(error) {
-						image.setAttribute("src", "https://cdn.oswald.foundation/2y7r9q-error.svg");
+						image.setAttribute("src", "icon-error.svg");
 						image.classList.remove("a11y-animate-rotate");
 						console.error(error);
 						alert(error);
@@ -631,7 +639,7 @@ SOFTWARE.
 		return new Promise(function(resolve, reject) {
 			if (window.a11y.loaded === 0) {
 				setTimeout(function() {
-					loadJS(["widget-min.js"]).then(function() {
+					loadJS(["widget.js"]).then(function() {
 						openWidget();
 						resolve("Loaded");
 					}, function() {
