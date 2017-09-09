@@ -498,7 +498,7 @@ SOFTWARE.
 					button.style.padding = "7px";
 					button.style.backgroundColor = a.color ? a.color : "#444";
 					var image = document.createElement("img");
-					image.setAttribute("src", a.image ? a.image : "icon-a11y.svg");
+					image.setAttribute("src", a.image ? a.image : "https://cdn.jsdelivr.net/gh/oswaldfoundation/a11y@0.2/icon-a11y.svg");
 					if (!a.image) {
 						if (a.theme) {
 							if (a.theme === "dark") {
@@ -557,17 +557,17 @@ SOFTWARE.
 			}
 			button.addEventListener("click", function() {
 				if (window.a11y.opened === 1) {
-					image.setAttribute("src", "icon-a11y.svg");
+					image.setAttribute("src", "https://cdn.jsdelivr.net/gh/oswaldfoundation/a11y@0.2/icon-a11y.svg");
 					closeWidget();
 				} else {
-					image.setAttribute("src", "icon-loading.svg");
+					image.setAttribute("src", "https://cdn.jsdelivr.net/gh/oswaldfoundation/a11y@0.2/icon-loading.svg");
 					image.classList.add("a11y-animate-rotate");
 					loadAgastya().then(function() {
-						image.setAttribute("src", "icon-close.svg");
+						image.setAttribute("src", "https://cdn.jsdelivr.net/gh/oswaldfoundation/a11y@0.2/icon-close.svg");
 						image.classList.remove("a11y-animate-rotate");
 						window.a11y.opened = 1;
 					}, function(error) {
-						image.setAttribute("src", "icon-error.svg");
+						image.setAttribute("src", "https://cdn.jsdelivr.net/gh/oswaldfoundation/a11y@0.2/icon-error.svg");
 						image.classList.remove("a11y-animate-rotate");
 						console.error(error);
 						alert(error);
