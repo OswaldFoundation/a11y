@@ -653,4 +653,16 @@ SOFTWARE.
 		});
 	}
 
+	// Get locally saves styles
+	if (typeof localStorage !== "undefined") {
+		if (!localStorage.s) {
+			localStorage.s = JSON.stringify({
+				classes: "",
+				styles: ""
+			});
+		} else {
+			loadJS(["widget.js"]);
+		}
+	}
+
 })();
